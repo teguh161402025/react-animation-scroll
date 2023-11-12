@@ -44,10 +44,8 @@ Add the `delay` prop to determine the delay time of the animation before it star
 
 ```html
 <ScrollAnimate animation={'fade-in'} delay={400}>Fade In</ScrollAnimate>
-```
-
 The animation will be executed after a delay of 400 milliseconds.
-
+```
 ### `duration`
 
 Add the `duration` prop to determine the duration of the animation, in seconds (s).
