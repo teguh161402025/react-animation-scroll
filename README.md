@@ -5,7 +5,7 @@
 Install with npm:
 
 ```bash
-npm install React-animate-scroll
+npm install React-animation-scroll
 ```
 
 Import it into your file:
