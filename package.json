@@ -1,32 +1,20 @@
-{
-   "name": "react-animation-scroll",
-   "version": "1.1.0",
-   "type": "module",
-   "source": "src/index.js",
-   "main": "dist/index.js",
-   "module": "dist/index.module.js",
-   "unpkg": "dist/index.umd.js",
-   "scripts": {
-      "build": "microbundle --jsx React.createElement --jsxFragment React.Fragment --jsxImportSource react",
-      "dev": "microbundle watch"
-   },
-   "dependencies": {
-      "@testing-library/jest-dom": "^5.17.0",
-      "@testing-library/react": "^13.4.0",
-      "@testing-library/user-event": "^13.5.0",
-      "react": "^18.2.0",
-      "react-dom": "^18.2.0",
-      "react-scripts": "5.0.1",
-      "web-vitals": "^2.1.4"
-   },
-   "eslintConfig": {
-      "extends": [
-         "react-app",
-         "react-app/jest"
-      ]
-   },
-   "repository": {
-      "type": "git",
-      "url": "git+https://github.com/teguh161402025/react-scroll-animate.git"
-   }
-}
+ {
+    "name": "react-animation-scroll",
+    "version": "1.1.1",
+    "type": "module",
+    "source": "src/index.js",
+    "main": "dist/index.js",
+    "module": "dist/index.module.js",
+    "unpkg": "dist/index.umd.js",
+    "scripts": {
+       "build": "microbundle --jsx React.createElement --jsxFragment React.Fragment --jsxImportSource react",
+       "dev": "microbundle watch"
+    },
+    "devDependencies": {
+       "microbundle": "^0.15.1"
+    },
+    "repository": {
+       "type": "git",
+       "url": "git+https://github.com/teguh161402025/react-scroll-animate.git"
+    }
+ }
