@@ -54,9 +54,5 @@ Add the `duration` prop to determine the duration of the animation, in seconds (
 
 ```html
 <ScrollAnimate animation={'fade-in'} duration={2}>Fade In</ScrollAnimate>
-```
-
 This animation will run for 2 seconds.
 ```
-
-Anda dapat menyalin dan menempelkan kode ini ke dalam file README.md pada repositori GitHub Anda.
