@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import './scroll-animate.css'
-function ScrollAnimate() {
+function ScrollAnimate({ children, animation, className, delay = 1, duration = 1, infinite = false }) {
 
+    const targetElement = useRef(null);
     let valueX;
     let valueY;
     let Valuedeg;
@@ -58,9 +59,9 @@ function ScrollAnimate() {
 
             if (animateString.includes(a.offsetType)) {
 
-                console.log(a.operate, a.valueDirection + value[a.valueIndex] + '%')
 
-                ele.style.setProperty(a.operate, a.valueDirection + value[a.valueIndex] + '%');
+
+                //  ele.style.setProperty(a.operate, a.valueDirection + value[a.valueIndex] + '%');
 
             }
         }
@@ -80,38 +81,43 @@ function ScrollAnimate() {
         const observer = new IntersectionObserver((entries) => {
             entries.forEach((a, index) => {
 
+                if (delay > 1) {
+
+                    if (targetElement.current.style.opacity !== "1") {
+                        targetElement.current.style.opacity = 0;
+                    }
+
+                }
+
                 if (a.isIntersecting) {
 
-                    const animate = a.target.getAttribute('scroll-animate');
-                    const duration = a.target.getAttribute('scroll-animate-duration');
-                    const offset = a.target.getAttribute('scroll-animate-offset')
-                    const defaultDuration = '1';
-                    console.log(index)
-                    setTimeout(function () {
-                        a.target.classList.add(animate)
-                        console.log(a.target.classList)
-                        const ele = document.querySelector('.' + animate)
-                        setTimeout(function () {
-                            if (offset) {
+                    //  const animate = a.target.getAttribute('scroll-animate');
+                    // const duration = a.target.getAttribute('scroll-animate-duration');
+                    // const offset = a.target.getAttribute('scroll-animate-offset')
+                    // const defaultDuration = '1';
 
-                                offsetHandler(animate, ele, offset)
-                            }
-                        }
-                            , 400)
-
-                        if (duration) {
-                            ele.style.setProperty('--animation-duration', duration + 's');
+                    setTimeout(() => {
+                        if (targetElement.current.style.opacity === "0") {
+                            targetElement.current.style.opacity = 1;
                         }
 
 
-                    }, 300);
-
-                    a.target.addEventListener('animationend', () => {
-                        a.target.classList.remove(animate);
-
-                    });
+                        a.target.classList.add(animation)
 
 
+                    }, delay)
+
+                    if (duration) {
+                        targetElement.current.style.setProperty('--animation-duration', duration + 's');
+                    }
+
+                    if (infinite) {
+
+                        a.target.addEventListener('animationend', () => {
+                            a.target.classList.remove(animation);
+
+                        });
+                    }
 
 
                 }
@@ -119,15 +125,19 @@ function ScrollAnimate() {
 
         }, option);
 
-        const divElements = document.querySelectorAll('[scroll-animate]');
 
-        for (let i = 0; i < divElements.length; i++) {
+        observer.observe(targetElement.current);
 
-            observer.observe(divElements[i]);
-        }
 
 
     }, [])
+    return (
+        <div ref={targetElement} className={`${className}`}>
+            {
+                children
+            }
+        </div>
+    )
 }
 
 export default ScrollAnimate
